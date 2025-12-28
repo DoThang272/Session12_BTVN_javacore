@@ -50,6 +50,7 @@ public class ProductBusiness {
                     sortProductESCPrice();
                     break;
                 case 7:
+                    sortProductDESCQuantity();
                     break;
                 case 8:
                     System.exit(0);
@@ -166,7 +167,7 @@ public class ProductBusiness {
         System.out.print("Enter the name product you want to search: ");
         String nameSearch = sc.nextLine();
         for (int i = 0; i < currentIndex; i++) {
-            if (products[i].toString().toLowerCase().contains(nameSearch)) {
+            if (products[i].getProductName().toLowerCase().contains(nameSearch.toLowerCase())) {
                 products[i].displayData();
             }
         }
@@ -174,15 +175,32 @@ public class ProductBusiness {
 
     public static void sortProductESCPrice() {
         for (int i = 0; i < currentIndex; i++) {
-            float temp;
-            if (products[i].getPrice() > products[i + 1].getPrice()) {
-                temp = products[i].getPrice();
-                products[i].setPrice(products[i + 1].getPrice());
-                products[i + 1].setPrice(temp);
+            for (int j = i; j < currentIndex; j++) {
+                Product temp = new Product();
+                if (products[i].getPrice() > products[j].getPrice()) {
+                    temp = products[i];
+                    products[i] = products[j];
+                    products[j] = temp;
+                }
             }
         }
         for (int i = 0; i < currentIndex; i++) {
             products[i].displayData();
         }
+        System.out.println("Sorted by price creasing!!!");
+    }
+
+    public static void sortProductDESCQuantity(){
+        for (int i = 0; i < currentIndex; i++) {
+            for (int j = i; j < currentIndex; j++) {
+                Product temp = new Product();
+                if (products[i].getQuantity() < products[j].getQuantity()){
+                    temp = products[i];
+                    products[i] = products[j];
+                    products[j] = temp;
+                }
+            }
+        }
+        System.out.println("Sorted by quantity increasing!!!");
     }
 }
