@@ -76,7 +76,7 @@ public class Appointment {
     @Override
     public String toString() {
         return "Appointment ID: " + this.appointmentID + " | Patient Name: " + this.patientName + " | Phone number: " + this.phoneNumber
-                + " | appointment date: " + this.appointmentDate + " | Name of doctor" + this.doctor;
+                + "\n | appointment date: " + this.appointmentDate + " | Name of doctor: " + this.doctor;
     }
 
     public String inputAppointmentId(Scanner sc) {
@@ -119,7 +119,7 @@ public class Appointment {
     public String inputPhoneNumber(Scanner sc) {
         System.out.println("Enter the phone patient: ");
         do {
-            String regexPhone = "(032|033|034|035|036|037|038|039|086|096|097|098)\\d{8}";
+            String regexPhone = "(032|033|034|035|036|037|038|039|086|096|097|098)\\d{7}";
             String phoneNum = sc.nextLine();
 
             if (Pattern.matches(regexPhone, phoneNum)) {
@@ -147,7 +147,7 @@ public class Appointment {
     public String inputDoctor(Scanner sc) {
         System.out.print("Input the name of Doctor: ");
         do {
-            String regexDoc = "[a-zA-Z]{0,200}";
+            String regexDoc = ".{0,200}";
             String nameDoctor = sc.nextLine();
             if (Pattern.matches(regexDoc, nameDoctor)) {
                 return nameDoctor;
@@ -156,5 +156,7 @@ public class Appointment {
             }
         } while (true);
     }
+
+
 
 }
